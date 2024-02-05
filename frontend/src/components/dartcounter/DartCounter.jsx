@@ -1,15 +1,10 @@
 import React, { useState , useEffect} from 'react'
-import ForwardIcon from '@mui/icons-material/Forward'
-import AdjustIcon from '@mui/icons-material/Adjust';
-import AlbumIcon from '@mui/icons-material/Album';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-
 import './dartcounter.css'
 
 const DartCounter = () => {
-    const [p1Score, setP1Score] = useState(501)
-    const [p2Score, setP2Score] = useState(501)
+    const [p1Score, setP1Score] = useState(10)
+    const [p2Score, setP2Score] = useState(10)
     const [p1Legs, setP1Legs] = useState(0)
     const [p2Legs, setP2Legs] = useState(0)
     const [currentPlayer, setCurrentPlayer] = useState(1)
@@ -29,12 +24,14 @@ const DartCounter = () => {
 
     const handleThrow = () => {
         let finish = 0
-        let gameEnded = false
+        let legEnded = false
+        let updatedLegs = 0
 
         if (throwScore && !isNaN(throwScore)) {
             const score = parseInt(throwScore)
             const currentPlayerScore = currentPlayer === 1 ? p1Score : p2Score
             const currentPlayerDartsThrown = currentPlayer === 1 ? p1DartsThrown : p2DartsThrown
+            const currentPlayerLegs = currentPlayer === 1 ? p1Legs : p2Legs
 
             if (score > 180 || score < 0 || currentPlayerScore < score) {
                 setErrorMessage(`${score} is not possible`)
@@ -43,7 +40,8 @@ const DartCounter = () => {
 
             if (currentPlayerScore - score === 0) {
                 finish = score
-                gameEnded = true
+                legEnded = true
+                updatedLegs = currentPlayerLegs + 1
             }
 
             const updatedScore = currentPlayerScore - score
@@ -54,13 +52,20 @@ const DartCounter = () => {
                 setP1DartsThrown(updatedDartsThrown)
                 setP1Avarage((501 - updatedScore) / (updatedDartsThrown / 3))
                 setP1HighestFinish(Math.max(p1HighestFinish, finish))
+                setP1Legs(Math.max(currentPlayerLegs, updatedLegs))
+                if (legEnded) {
+                    resetScore()
+                }
             }
-
             if (currentPlayer === 2) {
                 setP2Score(updatedScore)
                 setP2DartsThrown(updatedDartsThrown)
                 setP2Avarage((501 - updatedScore) / (updatedDartsThrown / 3))
                 setP2HighestFinish(Math.max(p2HighestFinish, finish))
+                setP2Legs(Math.max(currentPlayerLegs, updatedLegs))
+                if (legEnded) {
+                    resetScore()
+                }
             }
 
             setThrowScore('')
@@ -68,6 +73,23 @@ const DartCounter = () => {
             setCurrentPlayer(currentPlayer === 1 ? 2 : 1)
         }
     }
+
+    const resetScore = () => {
+        setP1Score(50)
+        setP2Score(501)
+        setP1Avarage(0.0)
+        setP2Avarage(0.0)
+        setP1DartsThrown(0)
+        setP2DartsThrown(0)
+    }
+
+    useEffect(() => {
+        if (p1Legs === 3 || p2Legs === 3) {
+            setMatchOver(true)
+        }
+    }, [p1Legs, p2Legs])
+
+
 
     return (
         <div className='match-container'>
@@ -78,7 +100,8 @@ const DartCounter = () => {
                         <p className='score-text'>{p1Score}</p>
                     </div>
                     <div className='player-stats'>
-                        <p>Three dart avarage: {p1Avarage}</p>
+                        <p className='leg-text'>Legs: {p1Legs}</p>
+                        <p>Three dart avarage: {p1Avarage.toFixed(2)}</p>
                         <p>Darts thrown: {p1DartsThrown}</p>
                         <p>Highest finish: {p1HighestFinish}</p>
                     </div>
@@ -89,7 +112,8 @@ const DartCounter = () => {
                         <p className='score-text'>{p2Score}</p>
                     </div>
                     <div className='player-stats'>
-                        <p>Three dart avarage: {p2Avarage}</p>
+                        <p className='leg-text'>Legs: {p2Legs}</p>
+                        <p>Three dart avarage: {p2Avarage.toFixed(2)}</p>
                         <p>Darts thrown: {p2DartsThrown}</p>
                         <p>Highest finish: {p2HighestFinish}</p>
                     </div>
@@ -108,7 +132,11 @@ const DartCounter = () => {
                     <ArrowForwardIosIcon className='throw-icon'/>
                 </button>
             </div>
-            
+            {matchOver && (
+                <div>
+                    <p>MATCH STATISTICS POP UP</p>
+                </div>
+            )}
         </div>
     )
 }
