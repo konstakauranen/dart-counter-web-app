@@ -10,13 +10,13 @@ const AfterGameStats = ({ onClose, p1stats, p2stats }) => {
                     <div className='player-info'>
                         <h3>Player 1</h3>
                         <p>Legs: {p1stats.legs}</p>
-                        <p>Three dart avarage: {p1stats.avarage}</p>
+                        <p>Three dart average: {p1stats.average}</p>
                         <p>Highest finish: {p1stats.highestFinish}</p>
                     </div>
                     <div className='player-info'>
                         <h3>Player 2</h3>
                         <p>Legs: {p2stats.legs}</p>
-                        <p>Three dart avarage: {p2stats.avarage}</p>
+                        <p>Three dart average: {p2stats.average}</p>
                         <p>Highest finish: {p2stats.highestFinish}</p>
                     </div>
                 </div>

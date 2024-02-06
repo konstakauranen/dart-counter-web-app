@@ -1,0 +1,71 @@
+.feed-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    font-family: sans-serif;
+    background-color: #EEEBDD;
+
+}
+
+.post-container {
+    background-color: #EEEBDD;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    height: 470px;
+    margin-bottom: 30px;
+    width: 45%;
+    padding-bottom: 30px;
+    border-radius: 1px;
+    box-shadow: 0 0 20px #4d02023b;
+}
+
+.post-stats-left {
+    display: flex;
+    flex-direction: column;
+    background-color: #EEEBDD;
+    margin-left: 1px;
+    margin-right: 0.5px;
+    padding-bottom: 40px;
+    align-items: center;
+    width: 700px;
+    height: 349px;
+}
+
+.post-stats-right {
+    display: flex;
+    flex-direction: column;
+    background-color: #EEEBDD;
+    margin-left: 0.5px;
+    margin-right: 1px;
+    padding-bottom: 40px;
+    align-items: center;
+    width: 700px;
+    height: 349px;
+}
+
+.player-name-header {
+    font-size: 25px;
+    margin-bottom: -20px;
+}
+
+.legs-won {
+    font-weight: bold;
+    font-size: 45px;
+    margin-bottom: 29px;
+}
+
+.stats-container {
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: row;
+    width: 92%;
+    height: 391px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0px;
+}
+

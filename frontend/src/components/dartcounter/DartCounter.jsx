@@ -11,8 +11,8 @@ const DartCounter = () => {
     const [currentPlayer, setCurrentPlayer] = useState(1)
     const [throwScore, setThrowScore] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
-    const [p1Avarage, setP1Avarage] = useState(0.0)
-    const [p2Avarage, setP2Avarage] = useState(0.0)
+    const [p1average, setP1average] = useState(0.0)
+    const [p2average, setP2average] = useState(0.0)
     const [p1DartsThrown, setP1DartsThrown] = useState(0)
     const [p2DartsThrown, setP2DartsThrown] = useState(0)
     const [p1HighestFinish, setP1HighestFinish] = useState(0)
@@ -57,7 +57,7 @@ const DartCounter = () => {
             if (currentPlayer === 1) {
                 setP1Score(updatedScore)
                 setP1DartsThrown(updatedDartsThrown)
-                setP1Avarage((501 - updatedScore) / (updatedDartsThrown / 3))
+                setP1average((501 - updatedScore) / (updatedDartsThrown / 3))
                 setP1HighestFinish(Math.max(p1HighestFinish, finish))
                 setP1Legs(Math.max(currentPlayerLegs, updatedLegs))
                 if (legEnded) {
@@ -67,7 +67,7 @@ const DartCounter = () => {
             if (currentPlayer === 2) {
                 setP2Score(updatedScore)
                 setP2DartsThrown(updatedDartsThrown)
-                setP2Avarage((501 - updatedScore) / (updatedDartsThrown / 3))
+                setP2average((501 - updatedScore) / (updatedDartsThrown / 3))
                 setP2HighestFinish(Math.max(p2HighestFinish, finish))
                 setP2Legs(Math.max(currentPlayerLegs, updatedLegs))
                 if (legEnded) {
@@ -84,8 +84,8 @@ const DartCounter = () => {
     const resetScore = () => {
         setP1Score(50)
         setP2Score(501)
-        setP1Avarage(0.0)
-        setP2Avarage(0.0)
+        setP1average(0.0)
+        setP2average(0.0)
         setP1DartsThrown(0)
         setP2DartsThrown(0)
     }
@@ -115,7 +115,7 @@ const DartCounter = () => {
                     </div>
                     <div className='player-stats'>
                         <p className='leg-text'>Legs: {p1Legs}</p>
-                        <p>Three dart avarage: {p1Avarage.toFixed(2)}</p>
+                        <p>Three dart average: {p1average.toFixed(2)}</p>
                         <p>Darts thrown: {p1DartsThrown}</p>
                         <p>Highest finish: {p1HighestFinish}</p>
                     </div>
@@ -127,7 +127,7 @@ const DartCounter = () => {
                     </div>
                     <div className='player-stats'>
                         <p className='leg-text'>Legs: {p2Legs}</p>
-                        <p>Three dart avarage: {p2Avarage.toFixed(2)}</p>
+                        <p>Three dart average: {p2average.toFixed(2)}</p>
                         <p>Darts thrown: {p2DartsThrown}</p>
                         <p>Highest finish: {p2HighestFinish}</p>
                     </div>
@@ -151,12 +151,12 @@ const DartCounter = () => {
                     onClose={handlePopupClose}
                     p1stats = {{
                         legs: p1Legs,
-                        avarage: p1Avarage,
+                        average: p1average,
                         highestFinish: p1HighestFinish,
                     }}
                     p2stats = {{
                         legs: p2Legs,
-                        avarage: p2Avarage,
+                        average: p2average,
                         highestFinish: p2HighestFinish,
                     }}
                 />
