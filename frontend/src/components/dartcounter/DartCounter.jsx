@@ -1,6 +1,7 @@
 import React, { useState , useEffect} from 'react'
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import './dartcounter.css'
+import AfterGameStats from '../../components/afterGameStats/AfterGameStats';
 
 const DartCounter = () => {
     const [p1Score, setP1Score] = useState(10)
@@ -20,6 +21,12 @@ const DartCounter = () => {
 
     const handleScoreChange = (event) => {
         setThrowScore(event.target.value)
+    }
+
+    const handlePopupClose = () => {
+        setMatchOver(false)
+        resetScore()
+        resetLegs()
     }
 
     const handleThrow = () => {
@@ -83,6 +90,13 @@ const DartCounter = () => {
         setP2DartsThrown(0)
     }
 
+    const resetLegs = () => {
+        setP1Legs(0)
+        setP2Legs(0)
+        setP1HighestFinish(0)
+        setP2HighestFinish(0)
+    }
+
     useEffect(() => {
         if (p1Legs === 3 || p2Legs === 3) {
             setMatchOver(true)
@@ -133,9 +147,19 @@ const DartCounter = () => {
                 </button>
             </div>
             {matchOver && (
-                <div>
-                    <p>MATCH STATISTICS POP UP</p>
-                </div>
+                <AfterGameStats
+                    onClose={handlePopupClose}
+                    p1stats = {{
+                        legs: p1Legs,
+                        avarage: p1Avarage,
+                        highestFinish: p1HighestFinish,
+                    }}
+                    p2stats = {{
+                        legs: p2Legs,
+                        avarage: p2Avarage,
+                        highestFinish: p2HighestFinish,
+                    }}
+                />
             )}
         </div>
     )
