@@ -7,7 +7,7 @@ const Feed = () => {
         <div className='feed-container'>
             {dartGameData.map((post, index) => (
                 <div className='post-container'>
-                    <h2>Best of three legs</h2>
+                    <h2 className='game-type-header'>Best of three legs</h2>
                     <div className='stats-container'>
                         <div className='post-stats-left'>
                             <h3 className='player-name-header'>{post.player1Name}</h3>

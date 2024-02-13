@@ -4,8 +4,8 @@ import './dartcounter.css'
 import AfterGameStats from '../../components/afterGameStats/AfterGameStats';
 
 const DartCounter = () => {
-    const [p1Score, setP1Score] = useState(10)
-    const [p2Score, setP2Score] = useState(10)
+    const [p1Score, setP1Score] = useState(501)
+    const [p2Score, setP2Score] = useState(501)
     const [p1Legs, setP1Legs] = useState(0)
     const [p2Legs, setP2Legs] = useState(0)
     const [currentPlayer, setCurrentPlayer] = useState(1)
@@ -21,6 +21,12 @@ const DartCounter = () => {
 
     const handleScoreChange = (event) => {
         setThrowScore(event.target.value)
+    }
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            handleThrow()
+        }
     }
 
     const handlePopupClose = () => {
@@ -82,7 +88,7 @@ const DartCounter = () => {
     }
 
     const resetScore = () => {
-        setP1Score(50)
+        setP1Score(501)
         setP2Score(501)
         setP1average(0.0)
         setP2average(0.0)
@@ -98,7 +104,7 @@ const DartCounter = () => {
     }
 
     useEffect(() => {
-        if (p1Legs === 3 || p2Legs === 3) {
+        if (p1Legs === 2 || p2Legs === 2) {
             setMatchOver(true)
         }
     }, [p1Legs, p2Legs])
@@ -109,7 +115,7 @@ const DartCounter = () => {
         <div className='match-container'>
             <div className='counter-container'>
                 <div className='player-container'>
-                    <h2>KONSTA</h2>
+                    <h2>JUSSI</h2>
                     <div className='score-container'>
                         <p className='score-text'>{p1Score}</p>
                     </div>
@@ -121,7 +127,7 @@ const DartCounter = () => {
                     </div>
                 </div>
                 <div className='player-container'>
-                    <h2>JUSSI</h2>
+                    <h2>VILLE-PEKKA</h2>
                     <div className='score-container'>
                         <p className='score-text'>{p2Score}</p>
                     </div>
@@ -141,6 +147,7 @@ const DartCounter = () => {
                     id='throwScore'
                     value={throwScore}
                     onChange={handleScoreChange}
+                    onKeyDown={handleKeyDown}
                 />
                 <button className='throw-button' onClick={handleThrow}>
                     <ArrowForwardIosIcon className='throw-icon'/>
