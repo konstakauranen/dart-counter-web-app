@@ -1,0 +1,2 @@
+GET http://localhost:8800/api/matches
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWQ0YjVkZmQyODMzNjk3NmJiNDkwZDciLCJpYXQiOjE3MDg0MzkwMjZ9.2PF5F6AJqA5Lyzm1abLzecXoUFuGYSzQTDy5tl-fv-I

@@ -1,0 +1,13 @@
+POST http://localhost:8800/api/matches
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWQ0YjVkZmQyODMzNjk3NmJiNDkwZDciLCJpYXQiOjE3MDg0MzkwMjZ9.2PF5F6AJqA5Lyzm1abLzecXoUFuGYSzQTDy5tl-fv-I
+
+{
+    "player2": "opponent",
+    "player1Legs": 3,
+    "player2Legs": 2,
+    "player1Average": 50,
+    "player2Average": 78.2,
+    "player1HighestFinish": 100,
+    "player2HighestFinish": 95
+}

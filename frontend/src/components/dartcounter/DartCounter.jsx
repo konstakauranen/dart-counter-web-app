@@ -15,6 +15,10 @@ const DartCounter = () => {
     const [p2average, setP2average] = useState(0.0)
     const [p1DartsThrown, setP1DartsThrown] = useState(0)
     const [p2DartsThrown, setP2DartsThrown] = useState(0)
+    const [p1TotalDartsThrown, setP1TotalDartsThrown] = useState(0)
+    const [p2TotalDartsThrown, setP2TotalDartsThrown] = useState(0)
+    const [p1TotalScore, setP1TotalScore] = useState(0)
+    const [p2TotalScore, setP2TotalScore] = useState(0)
     const [p1HighestFinish, setP1HighestFinish] = useState(0)
     const [p2HighestFinish, setP2HighestFinish] = useState(0)
     const [matchOver, setMatchOver] = useState(false)
@@ -45,6 +49,8 @@ const DartCounter = () => {
             const currentPlayerScore = currentPlayer === 1 ? p1Score : p2Score
             const currentPlayerDartsThrown = currentPlayer === 1 ? p1DartsThrown : p2DartsThrown
             const currentPlayerLegs = currentPlayer === 1 ? p1Legs : p2Legs
+            const currentPlayerTotalDarts = currentPlayer === 1 ? p1TotalDartsThrown : p2TotalDartsThrown
+            const currentPlayerTotalScore = currentPlayer === 1 ? p1TotalScore : p2TotalScore
 
             if (score > 180 || score < 0 || currentPlayerScore < score) {
                 setErrorMessage(`${score} is not possible`)
@@ -58,12 +64,16 @@ const DartCounter = () => {
             }
 
             const updatedScore = currentPlayerScore - score
+            const updatedTotalScore = currentPlayerTotalScore + score
             const updatedDartsThrown = currentPlayerDartsThrown + 3
+            const updatedTotalDartsThrown = currentPlayerTotalDarts + 3
 
             if (currentPlayer === 1) {
                 setP1Score(updatedScore)
                 setP1DartsThrown(updatedDartsThrown)
-                setP1average((501 - updatedScore) / (updatedDartsThrown / 3))
+                setP1TotalDartsThrown(updatedTotalDartsThrown)
+                setP1TotalScore(updatedTotalScore)
+                setP1average((updatedTotalScore / updatedTotalDartsThrown) *3)
                 setP1HighestFinish(Math.max(p1HighestFinish, finish))
                 setP1Legs(Math.max(currentPlayerLegs, updatedLegs))
                 if (legEnded) {
@@ -73,7 +83,9 @@ const DartCounter = () => {
             if (currentPlayer === 2) {
                 setP2Score(updatedScore)
                 setP2DartsThrown(updatedDartsThrown)
-                setP2average((501 - updatedScore) / (updatedDartsThrown / 3))
+                setP2TotalDartsThrown(updatedTotalDartsThrown)
+                setP2TotalScore(updatedTotalScore)
+                setP2average((updatedTotalScore / updatedTotalDartsThrown) *3)
                 setP2HighestFinish(Math.max(p2HighestFinish, finish))
                 setP2Legs(Math.max(currentPlayerLegs, updatedLegs))
                 if (legEnded) {
@@ -90,8 +102,6 @@ const DartCounter = () => {
     const resetScore = () => {
         setP1Score(501)
         setP2Score(501)
-        setP1average(0.0)
-        setP2average(0.0)
         setP1DartsThrown(0)
         setP2DartsThrown(0)
     }
