@@ -14,36 +14,46 @@
 .content {
     display: flex;
     flex-direction: column;
-    background: #dbb7ad;
-    padding: 20px;
+    background: #f1ecdf;
+    padding: 4%;
     align-items: center;
     justify-content: center;
-    border: 3px solid #070707;
+    box-shadow: 0 0 5px #1b01013b;
     border-radius: 10px;
 }
 
 .stats-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .player-info {
     flex: 1;
     margin: 10px;
     padding: 20px;
-    border: 2px solid #a15353;
-    background-color: aliceblue;
+    box-shadow: 0 0 5px #1b01013b;
+    background-color: #f1eee5;
+    border-radius: 8px;
+    width: 280px;
 }
 
 .close-button {
-    margin-top: 15px;
-    padding: 10px;
-    background-color: blanchedalmond;
-    color: #e908b8;
+    margin-bottom: 10px;
+    padding: 15px;
+    background-color: rgba(177, 5, 5, 0);
+    color: #000000;
     border: none;
     cursor: pointer;
+    transition: all 600ms ease;
+    box-shadow: 0 0 5px #1b01013b;
+
 }
 
 .close-button:hover {
-    background-color: aqua;
+    background-color: #f3d8ba;
+}
+
+.popup-header {
+    margin-bottom: -1%;
+    font-size: 35px;
 }

@@ -1,35 +1,68 @@
-import React, { useState , useEffect} from 'react'
-import dartGameData from '../../../testdata';
-import './feed.css'
+/* eslint-disable react/no-unescaped-entities */
+import { useState, useEffect } from "react"
+import "./feed.css"
+import matchesService from "../../services/matchesService"
+import PropTypes from "prop-types"
 
-const Feed = () => {
-    return(
-        <div className='feed-container'>
-            {dartGameData.map((post, index) => (
-                <div className='post-container'>
-                    <h2 className='game-type-header'>Best of three legs</h2>
-                    <div className='stats-container'>
-                        <div className='post-stats-left'>
-                            <h3 className='player-name-header'>{post.player1Name}</h3>
-                            <p className='legs-won'>{post.player1Score}</p>
-                            <p>Three dart average: {post.player1Average}</p>
-                            <p>Highest finish: {post.player1HighestFinish}</p>
-                            <p>Best leg: {post.player1BestLeg}</p>
-                            <p>Highest score: {post.player1HighestScore}</p>
-                        </div>
-                        <div className='post-stats-right'>
-                            <h3 className='player-name-header'>{post.player2Name}</h3>
-                            <p className='legs-won'>{post.player2Score}</p>
-                            <p>Three dart average: {post.player2Average}</p>
-                            <p>Highest finish: {post.player2HighestFinish}</p>
-                            <p>Best leg: {post.player2BestLeg}</p>
-                            <p>Highest score: {post.player2HighestScore}</p>
-                        </div>
-                    </div>
-                </div>
-            ))}
+const Feed = ({ user }) => {
+  const [matches, setMatches] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchMatches = async () => {
+      try {
+        matchesService.setToken(user.token)
+        const matchesData = await matchesService.getMatches()
+        setMatches(matchesData.reverse())
+        setLoading(false)
+      } catch (error) {
+        console.error("Error fetching matches", error)
+      }
+    }
+    fetchMatches()
+  }, [])
+
+  return (
+    <div className="feed-container">
+      {loading ? (
+        <div className="loading-container">
+          <div className="loading-spinner"></div>
         </div>
-    )
+      ) : matches.length === 0 ? (
+        <div>
+          <p>You haven't played any matches yet.</p>
+        </div>
+      ) : (
+        matches.map((match) => (
+          <div className="post-container" key={match._id}>
+            <h2 className="game-type-header">
+              First to {Math.max(match.player1Legs, match.player2Legs)} legs
+            </h2>
+            <div className="stats-container">
+              <div className="post-stats-left">
+                <h3 className="player-name-header">{match.player1}</h3>
+                <p className="legs-won">{match.player1Legs}</p>
+                <p>Three dart average: {match.player1Average}</p>
+                <p>Highest finish: {match.player1HighestFinish}</p>
+              </div>
+              <div className="post-stats-right">
+                <h3 className="player-name-header">{match.player2}</h3>
+                <p className="legs-won">{match.player2Legs}</p>
+                <p>Three dart average: {match.player2Average}</p>
+                <p>Highest finish: {match.player2HighestFinish}</p>
+              </div>
+            </div>
+          </div>
+        ))
+      )}
+    </div>
+  )
 }
-  
+
+Feed.propTypes = {
+  user: PropTypes.shape({
+    token: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
 export default Feed

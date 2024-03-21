@@ -3,6 +3,7 @@ const matchesRouter = require('express').Router()
 const Match = require('../models/match')
 const User = require('../models/user')
 
+// Function to extract token from request headers
 const getTokenFrom = request => {
     const authorization = request.get('authorization')
     if (authorization && authorization.startsWith('Bearer ')) {
@@ -54,7 +55,7 @@ matchesRouter.post('/', async (req, res) => {
     const user = await User.findById(decodedToken.userId)
 
     const newMatch = new Match({
-        player1: user._id,
+        player1: user.username,
         player2: body.player2,
         player1Legs: body.player1Legs,
         player2Legs: body.player2Legs,
@@ -68,7 +69,7 @@ matchesRouter.post('/', async (req, res) => {
 
     // Update users stats
     user.matches = user.matches.concat(newMatch._id)
-    user.allTimeAverage = ((user.allTimeAverage * user.matchesPlayed) + body.player1Average)/ (user.matchesPlayed + 1)
+    user.allTimeAverage = ((user.allTimeAverage * user.matchesPlayed) + parseInt(body.player1Average))/ (user.matchesPlayed + 1)
     user.highestFinish = Math.max(user.highestFinish, body.player1HighestFinish)
     user.matchesPlayed += 1
     await user.save()

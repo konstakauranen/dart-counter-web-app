@@ -7,7 +7,7 @@ body {
 .topbar-container {
     height: 50px;
     width: 100%;
-    background-color: #810000;
+    background-color: #720e0e;
     display: flex;
     align-items: center;
     position: sticky;
@@ -39,7 +39,7 @@ body {
     font-weight: bold;
     cursor: pointer;
     vertical-align: middle;
-    color: #EEEBDD;
+    color: #f0e8da;
 }
 
 .home-button, .new-game-button {
@@ -48,14 +48,35 @@ body {
     background: none;
     border:none;
     cursor: pointer;
-    color:#EEEBDD;
+    color:#f1e5ce;
     font-size: 25px;
+    font-family: sans-serif;
+    padding-left: 5px;
+    padding-right: 5px;
     height: 50px;
-    margin-right :70px;
+    margin-right :30px;
     transition: all 800ms ease;
+    text-decoration: none;
 }
 
-.home-button:hover, .new-game-button:hover {
+.logout-button {
+    display: flex;
+    align-items: center;
+    background: none;
+    border:none;
+    cursor: pointer;
+    color:#f1e5ce;
+    font-size: 20px;
+    font-family: sans-serif;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 50px;
+    margin-right :6px;
+    transition: all 800ms ease;
+    text-decoration: none;
+}
+
+.home-button:hover, .new-game-button:hover, .logout-button:hover {
     background-color: #630000;
 }
 

@@ -1,17 +1,18 @@
 .match-container {
-    background-color: #EEEBDD;;
-    height: 700px;
+    background-color: #f1ecdf;
     align-items: center;
     justify-content: center;
     display: flex;
     flex-direction: column;
+    height: 100vh;
+    height: calc(100vh - 50px);
 }
 
 .counter-container {
     display: flex;
     height: 460px;
     width: 80%;
-    background-color: #EEEBDD;;
+    background-color: #f1ecdf;
     padding: 50px;
     font-family: sans-serif;
 }
@@ -20,7 +21,7 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    background-color: #EEEBDD;;
+    background-color: #f1eee5;
     margin-right: 0px;
     align-items: center;
     height: 500px;
@@ -34,12 +35,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f1f0e8a8;;
+    background-color: #fcf5f0;;
     height: 100px;
     width: 210px;
     margin-top: 0px;
     margin-bottom: 12px;
-    padding-top: 22px;
+    padding-top: 10px;
     border: 1px solid;
 }
 
@@ -55,26 +56,26 @@
     justify-content: center;
     width: 65px;
     height: 65px;
-    background:#0ea11a;
+    background:#62960e;
     border:none;
     border-radius: 0px;
     cursor: pointer;
-    color:#c8f1b4;
+    color:#ffffff;
     font-weight: bold;
     transition: all 1000ms ease;
     margin-top: 10%;
   }
 
 .throw-button:hover {
-    color:rgb(11, 211, 4);
-    background-color: #046625;
+    color:rgb(229, 238, 229);
+    background-color: #457704;
 }
 
 .input-container {
     height: 65px;
     margin-top: 8px;
     display: flex;
-    margin-bottom: 70px;
+    margin-bottom: 0px;
 }
 
 .throw-icon {
@@ -104,4 +105,16 @@
 .leg-text {
     font-weight: bold;
     font-size: 28px;
+}
+
+.error-message {
+    position: absolute;
+    bottom: 10%; /* Adjust this value as needed */
+    left: 50%; /* Adjust this value as needed */
+    transform: translate(-50%, -50%);
+    background-color: rgba(161, 1, 1, 0.863); /* Adjust background color and opacity */
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 999;
 }

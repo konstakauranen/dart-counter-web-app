@@ -1,25 +1,35 @@
-import React from 'react'
+import { Link } from 'react-router-dom'
 import './topbar.css'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 
 export default function Topbar() {
-  return (
-    <div className='topbar-container'>
-        <div className='topbar-left'>
-            <span className='logo-text'>PLACEHOLDER</span>
-        </div>
+
+    const handleLogout = () => {
+        window.localStorage.removeItem('loggedUser')
+        window.location.reload()
+    }
+    return (
+        <div className='topbar-container'>
+            <div className='topbar-left'>
+                <span className='logo-text'>DART TRACKER</span>
+            </div>
         <div className='topbar-center'></div>
         <div className='topbar-right'>
-            <button className='home-button'>
+            <Link to='/' className='home-button'>
                 <SupervisedUserCircleIcon className="icon"/>
                 <span>HOME</span>
-            </button>
-            <button className='new-game-button'>
+            </Link>
+            <Link to='/match' className='new-game-button'>
                 <AddCircleIcon className="icon"/>
                 <span>NEW GAME</span>
-            </button>
+            </Link>
+            <Link to='/login' className='logout-button' onClick={handleLogout}>
+                <LogoutIcon className="icon"/>
+                <span>log out</span>
+            </Link>
         </div>
     </div>
   )

@@ -1,28 +1,88 @@
 import './login.css'
+import { useState } from 'react'
+import loginService from '../../services/loginService'
+import matchesService from '../../services/matchesService'
+import PropTypes from "prop-types"
+
 
 const Login = ({ mode }) => {
+
+    //LISÄÄ VIRHEILMOITUS JOS JOKU MENEEPI PIELLEEN
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    // const [user, setUser] = useState(null)
+    const [errorMessage, setErrorMessage] = useState('')
     const title = mode === 'login' ? 'Login' : 'Create a new user'
     const buttonText = mode === 'login' ? 'Login' : 'Sign up'
+    const linkText = mode === 'login' ? 'Not an user? Click here to ' : 'Already an user? Click here to '
+    const linkMode = mode === 'login' ? 'register' : 'login'
+
+    const handleLogin = async (event) => {
+        event.preventDefault()
+
+        try {
+            const endpoint = mode === 'login' ? 'login' : 'register'
+            const user = await loginService.login({
+                username, password,
+            }, endpoint)
+            window.localStorage.setItem(
+                'loggedUser', JSON.stringify(user)
+            )
+            matchesService.setToken(user.token)
+            //setUser(user)
+            setUsername('')
+            setPassword('')
+            window.location.reload()
+        } catch (error) {
+            if (mode === 'login') {
+                setErrorMessage('Login failed. Please check your credentials.')
+            } else {
+                setErrorMessage('Username already taken. Please try another.')
+            }
+            console.error('Login failed')
+        }
+    }
+
     return(
         <div className='login-page'>
+            <span className='testi'>
+            <h1 className='header-text-1'>DART</h1>
+            <h1 className='header-text-2'>TRACKER</h1>
+            </span>
             <div className='login-container'>
                 <h3>{title}</h3>
-                <input
-                    className='username-input'
-                    placeholder='Username'
-                    type='text'
-                />
-                <input
-                    className='password-input'
-                    placeholder='Password'
-                    type='text'
-                />
-                <button className='login-button'>
-                    {buttonText}
-                </button>
+                {errorMessage && <p className="login-error-message">{errorMessage}</p>}
+                <form className = 'login-form' onSubmit={handleLogin}>
+                    <input
+                        className='username-input'
+                        placeholder='Username'
+                        type="text"
+                        value={username}
+                        name="Username"
+                        onChange={({ target }) => setUsername(target.value)}
+                    />
+                    <input
+                        className="password-input"
+                        placeholder="Password"
+                        type="password"
+                        value={password}
+                        name="Password"
+                        onChange={({ target }) => setPassword(target.value)}
+                    />
+                    <button className='login-button' type="submit">
+                        {buttonText}
+                    </button>
+                </form>
+                <p className="mode-link">
+                    {linkText} <a href={`/${linkMode}`}>{linkMode === 'register' ? 'Register' : 'Sign in'}</a>
+                </p>
             </div>
         </div>
     )
 }
+
+Login.propTypes = {
+    mode: PropTypes.oneOf(['login', 'signup']).isRequired,
+  };
   
 export default Login

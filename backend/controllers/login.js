@@ -15,7 +15,8 @@ loginRouter.post('/register', async (req, res) => {
     })
 
     const user = await newUser.save()
-    res.status(201).json(user)
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET)
+    res.status(201).json({ username: user.username, token})
 
 })
 

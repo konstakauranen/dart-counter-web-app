@@ -25,7 +25,7 @@ userSchema = mongoose.Schema({
         type: Number,
         default: 0.0,
         min: 0.0,
-        max: 167
+        max: 180
     },
     matches: [{
         type: mongoose.Schema.Types.ObjectId,
