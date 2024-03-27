@@ -7,10 +7,8 @@ import PropTypes from "prop-types"
 
 const Login = ({ mode }) => {
 
-    //LISÄÄ VIRHEILMOITUS JOS JOKU MENEEPI PIELLEEN
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    // const [user, setUser] = useState(null)
     const [errorMessage, setErrorMessage] = useState('')
     const title = mode === 'login' ? 'Login' : 'Create a new user'
     const buttonText = mode === 'login' ? 'Login' : 'Sign up'

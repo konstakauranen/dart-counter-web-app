@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:8800/api/matches'
+const baseUrl = '/api/matches'
 
 let token = null
 
@@ -18,7 +18,6 @@ const getMatches = async () => {
 }
 
 const createMatch = async matchData => {
-    console.log(matchData)
     return axios.post(baseUrl, matchData, {
         headers: {
             Authorization: token, 

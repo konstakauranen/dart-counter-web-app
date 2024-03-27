@@ -1,5 +1,5 @@
 import axios from "axios"
-const baseUrl = 'http://localhost:8800/api/login/'
+const baseUrl = '/api/login/'
 
 const login = async (credentials, endpoint) => {
     const url = `${baseUrl}${endpoint}`

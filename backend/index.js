@@ -25,8 +25,9 @@ console.log('Connecting to', url)
 mongoose.connect(url)
     .then(() => {
         console.log("Connected to MongoDB")
-        app.listen(8800, () => {
-            console.log("Backend running")
+        const PORT = process.env.PORT || 8800
+        app.listen(PORT, () => {
+            console.log("Backend running on port", PORT)
         })
     })
     .catch((error) => {
