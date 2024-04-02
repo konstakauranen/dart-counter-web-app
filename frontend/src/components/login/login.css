@@ -84,6 +84,35 @@
     font-size: 14px;
 }
 
-.testi {
+.header-container {
     display: flex;
+}
+
+@media only screen and (max-width: 768px) {
+    .login-page {
+        background-color: #f1eee5;
+        margin: 0%;
+        padding: 0%;
+    }
+
+    .login-container {
+        background-color: #f1eee5;
+        margin: 0%;
+        padding: 0%;
+        box-shadow: none;
+        width: 100%;
+    }
+
+    .header-text-1 {
+        margin-left: 0%;
+        font-size: 3em;
+        color: #92272c;
+        margin-right: 1%;
+    }
+    
+    .header-text-2 {
+        font-size: 3em;
+        color: #1d3349; 
+        margin-left: 5px;
+    }
 }

@@ -63,6 +63,6 @@ Feed.propTypes = {
   user: PropTypes.shape({
     token: PropTypes.string.isRequired,
   }).isRequired,
-};
+}
 
 export default Feed

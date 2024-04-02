@@ -171,7 +171,7 @@ const DartCounter = ({ user, numberOfLegs, opponentName }) => {
           </div>
         </div>
       </div>
-      <div className='testi'>
+      <div>
           {errorMessage && (
             <div className="error-message">
               <p>{errorMessage}</p>

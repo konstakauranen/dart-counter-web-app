@@ -4,7 +4,6 @@
     justify-content: center;
     display: flex;
     flex-direction: column;
-    height: 100vh;
     height: calc(100vh - 50px);
 }
 
@@ -109,12 +108,67 @@
 
 .error-message {
     position: absolute;
-    bottom: 10%; /* Adjust this value as needed */
-    left: 50%; /* Adjust this value as needed */
+    bottom: 10%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(161, 1, 1, 0.863); /* Adjust background color and opacity */
+    background-color: rgba(161, 1, 1, 0.863); 
     color: #ffffff;
     padding: 10px;
     border-radius: 5px;
     z-index: 999;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .match-container {
+        background-color: #f1ecdf;
+        justify-content: flex-start;
+
+    }
+    .counter-container {
+        background-color: #f1ecdf;
+        width: 100%;
+        padding: 0%;
+    }
+
+    .player-container:nth-of-type(1) {
+        background-color: #f1ecdf;
+        padding: 0%;
+        margin: 0%;
+        width: 50%;
+        box-shadow: none;
+        border-right: 1px solid #daceb3;
+    }
+
+    .player-container:nth-of-type(2) {
+        background-color: #f1ecdf;
+        padding: 0%;
+        margin: 0%;
+        width: 50%;
+        box-shadow: none;
+        border-left: 1px solid #daceb3;
+    }
+
+    .player-stats {
+        width: 50%;
+        font-size: 1em;
+    }
+
+    .score-container {
+        width: 90%;
+    }
+
+    .score-text {
+        font-size: 5em;
+    }
+
+    .input-container {
+        margin-top: 22%;
+    }
+
+    .leg-text {
+        font-size: 1em;
+    }
+
+    
 }

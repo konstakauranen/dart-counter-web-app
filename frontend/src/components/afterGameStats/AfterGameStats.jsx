@@ -42,6 +42,6 @@ AfterGameStats.propTypes = {
     average: PropTypes.string.isRequired,
     highestFinish: PropTypes.number.isRequired,
   }).isRequired,
-};
+}
 
 export default AfterGameStats

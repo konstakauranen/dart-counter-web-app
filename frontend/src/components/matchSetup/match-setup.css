@@ -4,7 +4,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    background-color:#f1ecdf;
+    background-color:#f1eee5;
     font-weight: bold;
     font-family: sans-serif;
 }
@@ -61,4 +61,16 @@
 
 .setup-button:hover {
     background-color: #9c180e;
+}
+
+@media only screen and (max-width: 768px) {
+    .setup-wrapper {
+        box-shadow: none;
+        padding: 0%;
+    }
+
+    .setup-button {
+        font-size: 20px;
+        padding: 10%;
+    }
 }

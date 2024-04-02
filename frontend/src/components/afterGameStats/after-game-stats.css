@@ -57,3 +57,18 @@
     margin-bottom: -1%;
     font-size: 35px;
 }
+
+@media only screen and (max-width: 768px) {
+    .content {
+        background-color: #f1ecdf;
+        padding: 0px;
+        border-radius: 0%;
+    }
+
+    .player-info {
+        background-color: #eeebe2;
+        width: 40%;
+        margin: 0px;
+        border-radius: 0%;
+    }
+}

@@ -27,7 +27,6 @@ const Login = ({ mode }) => {
                 'loggedUser', JSON.stringify(user)
             )
             matchesService.setToken(user.token)
-            //setUser(user)
             setUsername('')
             setPassword('')
             window.location.reload()
@@ -43,7 +42,7 @@ const Login = ({ mode }) => {
 
     return(
         <div className='login-page'>
-            <span className='testi'>
+            <span className='header-container'>
             <h1 className='header-text-1'>DART</h1>
             <h1 className='header-text-2'>TRACKER</h1>
             </span>
@@ -81,6 +80,6 @@ const Login = ({ mode }) => {
 
 Login.propTypes = {
     mode: PropTypes.oneOf(['login', 'signup']).isRequired,
-  };
+  }
   
 export default Login
