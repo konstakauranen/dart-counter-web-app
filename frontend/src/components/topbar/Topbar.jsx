@@ -1,15 +1,17 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './topbar.css'
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
-import LogoutIcon from '@mui/icons-material/Logout';
+import AddCircleIcon from '@mui/icons-material/AddCircle'
+import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle'
+import LogoutIcon from '@mui/icons-material/Logout'
+
 
 
 export default function Topbar() {
 
+    const navigate = useNavigate()
     const handleLogout = () => {
         window.localStorage.removeItem('loggedUser')
-        window.location.reload()
+        navigate("/login")
     }
     return (
         <div className='topbar-container'>

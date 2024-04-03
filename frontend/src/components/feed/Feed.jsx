@@ -62,7 +62,7 @@ const Feed = ({ user }) => {
 Feed.propTypes = {
   user: PropTypes.shape({
     token: PropTypes.string.isRequired,
-  }).isRequired,
+  }),
 }
 
 export default Feed

@@ -12,7 +12,7 @@ const HomePage = ({ user }) => {
 }
 
 HomePage.propTypes = {
-    user: PropTypes.object.isRequired
+    user: PropTypes.object
 }
   
 export default HomePage
