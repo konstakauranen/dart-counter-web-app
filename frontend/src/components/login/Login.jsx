@@ -3,6 +3,7 @@ import { useState } from 'react'
 import loginService from '../../services/loginService'
 import matchesService from '../../services/matchesService'
 import PropTypes from "prop-types"
+import { useNavigate } from "react-router-dom"
 
 
 const Login = ({ mode }) => {
@@ -14,6 +15,7 @@ const Login = ({ mode }) => {
     const buttonText = mode === 'login' ? 'Login' : 'Sign up'
     const linkText = mode === 'login' ? 'Not an user? Click here to ' : 'Already an user? Click here to '
     const linkMode = mode === 'login' ? 'register' : 'login'
+    const navigate = useNavigate()
 
     const handleLogin = async (event) => {
         event.preventDefault()
@@ -29,7 +31,8 @@ const Login = ({ mode }) => {
             matchesService.setToken(user.token)
             setUsername('')
             setPassword('')
-            window.location.reload()
+            navigate("/")
+            
         } catch (error) {
             if (mode === 'login') {
                 setErrorMessage('Login failed. Please check your credentials.')
