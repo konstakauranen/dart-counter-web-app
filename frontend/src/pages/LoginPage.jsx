@@ -1,9 +1,14 @@
 import Login from "../components/login/Login"
+import PropTypes from "prop-types"
 
-const LoginPage = () => {
+const LoginPage = ({ onLogin }) => {
     return(
-        <Login mode='login'/>
+        <Login mode='login' onLogin={onLogin} />
     )
 }
+  
+LoginPage.propTypes = {
+    onLogin: PropTypes.func.isRequired,
+  }
   
 export default LoginPage

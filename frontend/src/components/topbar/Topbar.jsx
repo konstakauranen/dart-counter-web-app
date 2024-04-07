@@ -3,14 +3,16 @@ import './topbar.css'
 import AddCircleIcon from '@mui/icons-material/AddCircle'
 import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle'
 import LogoutIcon from '@mui/icons-material/Logout'
+import PropTypes from "prop-types"
 
 
 
-export default function Topbar() {
+export default function Topbar( {onLogout} ) {
 
     const navigate = useNavigate()
     const handleLogout = () => {
         window.localStorage.removeItem('loggedUser')
+        onLogout(null)
         navigate("/login")
     }
     return (
@@ -35,4 +37,8 @@ export default function Topbar() {
         </div>
     </div>
   )
+}
+
+Topbar.propTypes = {
+    onLogout: PropTypes.func
 }

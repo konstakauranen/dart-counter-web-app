@@ -6,7 +6,7 @@ import PropTypes from "prop-types"
 import { useNavigate } from "react-router-dom"
 
 
-const Login = ({ mode }) => {
+const Login = ({ mode, onLogin }) => {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -29,6 +29,8 @@ const Login = ({ mode }) => {
                 'loggedUser', JSON.stringify(user)
             )
             matchesService.setToken(user.token)
+            onLogin(user)
+            console.log("Login.jsx:", user)
             setUsername('')
             setPassword('')
             navigate("/")
@@ -83,6 +85,7 @@ const Login = ({ mode }) => {
 
 Login.propTypes = {
     mode: PropTypes.oneOf(['login', 'signup']).isRequired,
+    onLogin: PropTypes.func.isRequired,
   }
   
 export default Login

@@ -16,21 +16,25 @@ export default function App() {
     }
   }, [])
 
+  const handleUser = (user) => {
+    setUser(user)
+  }
+
   return (
     <Router>
       <>
         <Routes>
           <Route
             path="/"
-            element={user ? <HomePage user={user}/> : <Navigate to="/login" />}
+            element={user ? <HomePage user={user} onLogout={handleUser}/> : <Navigate to="/login" />}
           />
           <Route
             path="/login"
-            element={<LoginPage />}
+            element={user ? <Navigate to="/" /> : <LoginPage onLogin={handleUser}/>}
           />
           <Route
             path="/register"
-            element={user ? <Navigate to="/" /> : <SignUpPage />}
+            element={user ? <Navigate to="/" /> : <SignUpPage onLogin={handleUser}/>}
           />
             <Route
             path="/match"
