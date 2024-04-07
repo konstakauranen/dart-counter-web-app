@@ -20,6 +20,15 @@ app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
 app.use('/api/matches', matchesRouter)
 
+app.get("/*", function (req, res) {
+    res.sendFile(path.join(__dirname, "dist/index.html"), function (err) {
+      if (err) {
+        res.status(500).send(err);
+      }
+    })
+  })
+  
+
 const url = process.env.MONGODB_URI;
 console.log('Connecting to', url)
 
