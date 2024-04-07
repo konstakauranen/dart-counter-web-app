@@ -8,6 +8,7 @@ const dotenv = require('dotenv').config()
 const usersRouter = require('./controllers/users')
 const loginRouter = require('./controllers/login')
 const matchesRouter = require('./controllers/matches')
+const path = require('path')
 
 // Middleware
 app.use(cors())
@@ -23,7 +24,7 @@ app.use('/api/matches', matchesRouter)
 app.get("/*", function (req, res) {
     res.sendFile(path.join(__dirname, "dist/index.html"), function (err) {
       if (err) {
-        res.status(500).send(err);
+        res.status(500).send(err)
       }
     })
   })
