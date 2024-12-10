@@ -16,7 +16,6 @@ The application is available online at: **[dart-tracker.onrender.com](https://da
 1. Clone the repository:  
    ```bash  
    git clone https://github.com/konstakauranen/dart-counter-web-app.git 
-   cd dartapp  
    ```  
 
 2. Install dependencies:  
